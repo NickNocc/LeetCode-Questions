@@ -5,13 +5,17 @@
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
 var maxProfit = function(prices) {
-    var highestPrice = 0
-    
-    for(var i = 0; i < prices.length; i++) {
-        if (prices[i] > highestPrice) {
-            highestPrice = prices[i]
-        } else {
-            return 0
-        }
+    // lo tracks our lowest price
+    let lo = prices[0]
+    // hi tracks our highest price
+    let hi = 0
+    // goes through prices array 
+    for (const price of prices)
+    {
+        // Cycles through our lowest price and the prices array to give out lowest value
+        lo = Math.min(lo, price)
+        // Cycles through our highest price and the price array - lo to find highest value day
+        hi = Math.max(hi, price - lo)
     }
+    return hi;
 };
